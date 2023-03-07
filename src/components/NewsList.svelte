@@ -12,7 +12,7 @@
             picture: "/imgs/BYMC2022JustinaLaCour.jpg",
             title: "Won a prize there",
             published: new Date(),
-            article: "Bla bla bla bla"
+            article: "Bla bla bla bla pretend there are more news"
         }
     ];
 

@@ -147,11 +147,11 @@
 
     .gallery {
         grid-area: gallery;
-        background-image: url("/imgs/garden-playing.jpg");
+        background-image: url("/imgs/Portrait1.jpg");
         background-size: cover;
         background-position: center;
         padding: 0;
-        min-height: 15rem;
+        height: 40rem;
     }
 
     .gallery-backdrop {
