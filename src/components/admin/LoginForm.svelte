@@ -12,7 +12,6 @@
                 await signIn(email, password);
                 email = "";
                 password = "";
-                console.log($adminUser);
             } catch (err) {
                 error = "An error has occured";
                 console.log(err);

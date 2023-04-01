@@ -1,13 +1,14 @@
 <script lang="ts">
-    import type { Concert } from "../../types/concert";
     import { onMount } from "svelte";
-    import { adminUser } from "../../firebase/stores";
     import { addDoc, type CollectionReference, type DocumentReference } from "firebase/firestore";
     import ConcertEditor from "./ConcertEditor.svelte";
+    import LoadingSpinner from "../utils/LoadingSpinner.svelte";
 
     let concertsRefs: DocumentReference[] = [];
 
     let concertsCol: CollectionReference | null = null;
+
+    let saving: boolean = false;
 
     onMount(async () => {
         const { getConcerts, concertsCollection }  = await import("../../firebase");
@@ -18,13 +19,17 @@
     let singleEditors: ConcertEditor[] = [];
 
     async function save() {
+        saving = true;
+
         const promises = [];
 
         for (const editor of singleEditors) {
             promises.push(editor.save());
         }
 
-        return Promise.all(promises);
+        await Promise.all(promises);
+
+        saving = false;
     }
 
     async function addConcert() {
@@ -33,7 +38,8 @@
         const docRef = await addDoc(concertsCol, {
             location: "",
             description: "",
-            date: new Date()
+            date: new Date(),
+            url: ""
         });
 
         concertsRefs = [...concertsRefs, docRef];
@@ -45,37 +51,19 @@
 
 </script>
 
-<div class="wrapper">
+<div class="editor-wrapper">
     <div class="toolbar">
         <button on:click={addConcert}>Add concert</button>
         <button on:click={save}>Save</button>
     </div>
-    <ul>
+
+    {#if saving}
+        <div class="saving-backdrop">
+            <LoadingSpinner message="Saving gallery..." />
+        </div>
+    {:else}
         {#each concertsRefs as concert, i}
-            <li class="concert-editor">
-                <ConcertEditor concertRef={concert} bind:this={singleEditors[i]} on:deleted={onDelete} />
-            </li>
+            <ConcertEditor concertRef={concert} bind:this={singleEditors[i]} on:deleted={onDelete} />
         {/each}
-    </ul>
+    {/if}
 </div>
-
-<style>
-
-    .wrapper {
-        position: relative;
-    }
-
-    ul {
-        list-style-type: none;
-        margin: 1rem 0;
-        padding: 0;
-    }
-
-    .toolbar {
-        background: white;
-        position: sticky;
-        top: 4rem;
-        padding: 0.5rem;
-        box-shadow: 0 2rem 2rem -1rem rgba(0, 0, 0, 0.1);
-    }
-</style>

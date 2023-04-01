@@ -1,11 +1,6 @@
-import type { Concert } from "src/types/concert";
+import type { Concert } from "../types/concert";
+import { Status } from "../types/status";
 import { writable } from "svelte/store";
-
-export enum Status {
-    OK,
-    FAILED,
-    PENDING
-};
 
 export interface ConcertFetchResult {
     upcoming: Concert[];
@@ -42,7 +37,7 @@ interface RawConcert {
 
 export async function updateConcerts() {
     try {
-        const res = await fetch("https://firestore.googleapis.com/v1/projects/cyprien-keiser/databases/(default)/documents/concerts");
+        const res = await fetch("https://firestore.googleapis.com/v1/projects/justina-la-cour-website/databases/(default)/documents/concerts");
         const json = await res.json();
 
         const upcoming: Concert[] = [];
@@ -52,7 +47,8 @@ export async function updateConcerts() {
             const concert: Concert = {
                 location: rawConcert.fields.location.stringValue,
                 description: rawConcert.fields.description.stringValue,
-                date: new Date(rawConcert.fields.date.timestampValue)
+                date: new Date(rawConcert.fields.date.timestampValue),
+                url: rawConcert.fields.url?.stringValue ?? ""
             };
 
             if (concert.date.getTime() < Date.now()) {

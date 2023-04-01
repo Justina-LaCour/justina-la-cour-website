@@ -6,7 +6,7 @@ html, body {
     --ff-text: "Montserrat";
 
     --color-primary: rgb(87, 84, 183);
-    --color-primary-light: rgba(144, 148, 222, 0.75);
+    --color-primary-light: rgba(144, 148, 222, .75);
 
     font-family: var(--ff-text);
 }
@@ -19,12 +19,16 @@ html, body {
     backdrop-filter: blur(0.7rem);
 }
 
-.bg-dark {
-    background: rgba(0, 0, 0, 0.4);
+.bg-light {
+    background: rgba(255, 255, 255, 0.4);
 }
 
-.bg-very-dark {
-    background: rgba(0, 0, 0, 0.85);
+.bg-mid-light {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.bg-very-light {
+    background: rgba(255, 255, 255, 0.85);
 }
 
 h1, h2 {
@@ -50,12 +54,6 @@ p {
     margin-bottom: 1.5rem;
 }
 
-.horizontal-main-left {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1rem;
-}
-
 .yt-video {
     display: block;
     margin-bottom: 1.5rem;
@@ -78,6 +76,7 @@ a.cta, a.cta-inverted, button.cta, button.cta-inverted {
 
 a.cta, button.cta {
     color: var(--color-primary);
+    box-shadow: 0 0 1rem rgba(43, 92, 8, 0.15);
 }
 
 a.cta:hover, button.cta:hover {
@@ -85,12 +84,13 @@ a.cta:hover, button.cta:hover {
     background-color: var(--color-primary);
 }
 
-a.cta-inverted, button.cta-inverted {
+a.cta-inverted, button.cta-inverted, label.cta-inverted {
     color: white;
     background-color: var(--color-primary);
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.15);
 }
 
-a.cta-inverted:hover, button.cta-inverted:hover {
+a.cta-inverted:hover, button.cta-inverted:hover, label.cta-inverted:hover {
     color: var(--color-primary);
     background-color: white;
 }
@@ -111,6 +111,118 @@ button:hover {
     background: var(--color-primary-light);
 }
 
-.concert-editor:nth-child(odd) > .container {
-    background-color: rgba(0, 0, 0, 0.04);
+input, textarea {
+    display: block;
+    font: inherit;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.line-breaks {
+    white-space: pre-wrap;
+}
+    
+.soft-button {
+    display: block;
+    box-sizing: border-box;
+    height: 2rem;
+    aspect-ratio: 1 / 1;
+    background-color: transparent;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    transition: 0.25s;
+}
+
+.soft-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.soft-button img {
+    display: block;
+    height: 100%;
+}
+
+.auto-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, var(--cell-width));
+    grid-auto-rows: var(--cell-height);
+    gap: 1rem;
+}
+
+footer {
+    position: relative; /* allows to go on top of shadows */
+    background-color: rgb(51, 51, 51);
+    color: white;
+    padding: 2rem;
+}
+
+.toolbar-button {
+    display: block;
+    background: var(--color-primary);
+    padding: 0.25rem;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+}
+
+@keyframes title-appear {
+    0% {
+        transform: translateX(-1.5rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes content-appear {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bottom-appear {
+    0% {
+        transform: translateY(2rem);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes top-appear {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoom-out {
+    0% {
+        opacity: 0;
+        transform: scale(1.05);
+        filter: blur(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
 }
