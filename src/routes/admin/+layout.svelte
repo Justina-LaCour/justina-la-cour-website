@@ -21,7 +21,7 @@
 <PageStructure layout="content-only" title={title}>
     {#if $adminUser}
         <div>
-            <nav>
+            <nav class="admin-nav">
                 <NavLink href="/admin">Analytics</NavLink>
                 <NavLink href="/admin/bio">Edit Bios</NavLink>
                 <NavLink href="/admin/socialmedias">Edit Social Medias</NavLink>
@@ -57,7 +57,7 @@
         gap: 1rem;
     }
 
-    nav :global(a) {
+    .admin-nav :global(a) {
         color: black;
     }
 </style>
