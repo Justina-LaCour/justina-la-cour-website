@@ -3,8 +3,8 @@
 </script>
 
 <HomeStructure
-    instrument="Violoncelliste"
-    aboutTitle="À propos de Cyprien"
+    instrument="Violoniste"
+    aboutTitle="À propos de Justina"
     language="fr"
     bioLoadingText="Chargement de la biographie"
     seeBioText="Voir la biographie"
