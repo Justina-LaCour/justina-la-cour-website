@@ -56,4 +56,8 @@
         display: flex;
         gap: 1rem;
     }
+
+    nav :global(a) {
+        color: black;
+    }
 </style>

@@ -1,3 +1,3 @@
 <div>
-    <h2>Your website has been viewed 69 times in the past 7 days</h2>
+    <h2>Welcome to admin page, you can edit most of the things that will appear on your website</h2>
 </div>
