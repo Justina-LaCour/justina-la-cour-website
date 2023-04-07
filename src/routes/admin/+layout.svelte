@@ -25,6 +25,7 @@
                 <NavLink href="/admin">Analytics</NavLink>
                 <NavLink href="/admin/bio">Edit Bios</NavLink>
                 <NavLink href="/admin/socialmedias">Edit Social Medias</NavLink>
+                <NavLink href="/admin/news">Edit News</NavLink>
                 <NavLink href="/admin/concerts">Edit Concerts</NavLink>
                 <NavLink href="/admin/videos">Edit Videos</NavLink>
                 <NavLink href="/admin/gallery">Edit Gallery</NavLink>

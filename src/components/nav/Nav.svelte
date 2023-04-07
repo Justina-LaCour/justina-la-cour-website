@@ -7,6 +7,7 @@
         langURL: "en",
         homeText: "Home",
         bioText: "Bio",
+        newsText: "News",
         concertsText: "Concerts",
         mediaText: "Media",
         contactText: "Contact"

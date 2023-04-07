@@ -25,7 +25,7 @@
         const docRef = await addDoc(galleryCol, {
             url: "/imgs/gallery_default.jpg",
             thumbnailUrl: "/imgs/gallery_default.jpg",
-            copyright: "Something similar",
+            copyright: "Copyright",
             uploadedDate: new Date()
         });
 

@@ -90,10 +90,13 @@
 
     .picture {
         grid-area: picture;
+        position: relative;
     }
     
     .picture img {
         width: 100%;
+        position: sticky;
+        top: 5rem;
     }
 
     .content {

@@ -9,6 +9,7 @@
         langURL: "fr",
         homeText: "Accueil",
         bioText: "Bio",
+        newsText: "Actualités",
         concertsText: "Concerts",
         mediaText: "Médias",
         contactText: "Contact"

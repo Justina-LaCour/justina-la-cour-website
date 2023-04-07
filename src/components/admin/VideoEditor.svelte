@@ -28,6 +28,8 @@
     export async function save() {
         if (!modified) return;
 
+        youtubeHandle.replace("https://youtu.be/", "");
+        youtubeHandle.replace("https://youtube.com/watch?v=", "");
         const data = {
             youtubeHandle,
             title,

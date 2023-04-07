@@ -2,6 +2,7 @@
     import type { Concert } from "../../types/concert";
     import { browser } from '$app/environment';
     import { onMount } from "svelte";
+    import ConcertDate from "./ConcertDate.svelte";
 
     export let concertsList: Concert[];
 
@@ -34,7 +35,7 @@
         <li>
             <a href={concert.url} target="_blank" rel="noopener noreferrer">
                 <div class="concert-container">
-                    <div class="concert-date">{ formatConcertDate(concert) }</div>
+                    <div class="concert-date"><ConcertDate date={concert.date} compact={compact} /></div>
                     <div class="concert-title">{ concert.location }</div>
                     <div class="concert-description line-breaks">{ concert.description }</div>
                 </div>

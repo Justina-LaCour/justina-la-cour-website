@@ -5,14 +5,15 @@
     import LoadingSpinner from "../utils/LoadingSpinner.svelte";
     import { Status } from "../../types/status";
     import { browser } from "$app/environment";
+    import NewsList from "../news/NewsList.svelte";
 
     export let instrument: string = "Violinist";
     export let aboutTitle: string = "About Justina";
     export let language: string = "en";
     export let bioLoadingText: string = "Loading bio";
     export let seeBioText: string = "See Biography";
-    export let listenTitle: string = "Listen";
-    export let seeMedias: string = "See Medias";
+    export let newsTitle: string = "Latest News";
+    export let seeNews: string = "See All News";
     export let concertsTitle: string = "Concerts";
     export let seeAllConcertsText: string = "See All Concerts";
     export let seeGalleryText: string = "See Gallery";
@@ -41,21 +42,27 @@
 
     <div class="grid bg-light">
         <section class="mini-bio backdrop-blur-very-strong bg-very-light">
-            <h3>{ aboutTitle }</h3>
+            <div class="bio-text">
+                <h3>{ aboutTitle }</h3>
+    
+                {#if $bios[language].status === Status.PENDING}
+                    <LoadingSpinner message={bioLoadingText} />
+                {:else}
+                    <p class="line-breaks">{ $bios[language].biography.short }</p>
+                {/if}
+                
+                <a href="{language}/bio" class="cta">{ seeBioText }</a>
+            </div>
 
-            {#if $bios[language].status === Status.PENDING}
-                <LoadingSpinner message={bioLoadingText} />
-            {:else}
-                <p class="line-breaks">{ $bios[language].biography.short }</p>
-            {/if}
-            
-            <a href="{language}/bio" class="cta">{ seeBioText }</a>
+            <div class="listen">
+                <iframe class="yt-video" width="560" height="315" src="https://www.youtube.com/embed/1V7yLJOhuV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </section>
         
-        <section class="main-media backdrop-blur-very-strong bg-very-light">
-            <h3>{ listenTitle }</h3>
-            <iframe class="yt-video" width="560" height="315" src="https://www.youtube.com/embed/1V7yLJOhuV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <a href="{language}/media" class="cta-inverted">{ seeMedias }</a>
+        <section class="news backdrop-blur-very-strong bg-very-light">
+            <h3>{ newsTitle }</h3>
+            <NewsList lang={language} maxCount={3} />
+            <a href="{language}/news" class="cta-inverted">{ seeNews }</a>
         </section>
     
         <section class="concerts backdrop-blur-very-strong bg-very-light">
@@ -165,6 +172,31 @@
         animation-delay: 0.4s;
     }
 
+    .mini-bio {
+        display: grid;
+        grid-template-areas: "bio-text listen";
+        grid-template-columns: 3fr 2fr;
+        gap: 1rem;
+    }
+
+    .bio-text {
+        grid-area: bio-text;
+    }
+
+    .listen {
+        grid-area: listen;
+    }
+
+    @media screen and (max-width: 55rem) {
+        .mini-bio {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "bio-text"
+                "listen";
+            grid-template-rows: min-content min-content;
+        }
+    }
+
     h3 {
         margin-top: 0;
         text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
@@ -175,7 +207,7 @@
         width: 100%;
     }
 
-    .main-media {
+    .news {
         background-color: var(--color-primary-light);
     }
 

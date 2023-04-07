@@ -4,6 +4,7 @@
         langURL: string;
         homeText: string;
         bioText: string;
+        newsText: string;
         concertsText: string;
         mediaText: string;
         contactText: string;
@@ -24,6 +25,7 @@
 <ul class="links" class:vertical={vertical}>
     <li><NavLink href="/{params.langURL}">{ params.homeText }</NavLink></li>
     <li><NavLink href="/{params.langURL}/bio">{ params.bioText }</NavLink></li>
+    <li><NavLink href="/{params.langURL}/news">{ params.newsText }</NavLink></li>
     <li><NavLink href="/{params.langURL}/concerts">{ params.concertsText }</NavLink></li>
     <li><NavLink href="/{params.langURL}/media">{ params.mediaText }</NavLink></li>
     <li><NavLink href="/{params.langURL}/contact">{ params.contactText }</NavLink></li>

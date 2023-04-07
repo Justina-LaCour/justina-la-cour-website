@@ -39,6 +39,11 @@ export async function getConcerts() {
     return getDocs(concertsCollection);
 }
 
+export const newsCollection = collection(db, "news");
+export async function getNews() {
+    return getDocs(newsCollection);
+}
+
 export const biosCollection = collection(db, "bios");
 export async function getBios() {
     return getDocs(biosCollection);
