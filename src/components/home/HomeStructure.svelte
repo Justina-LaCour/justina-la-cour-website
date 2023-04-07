@@ -202,11 +202,6 @@
         text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
     }
 
-    section img {
-        display: block;
-        width: 100%;
-    }
-
     .news {
         background-color: var(--color-primary-light);
     }

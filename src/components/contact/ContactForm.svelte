@@ -24,7 +24,7 @@
             state = FormState.SENDING;
 
             try {
-                await emailjs.sendForm("service_yndpnqd", "template_smd2rni", form, "JyZlcg8R1T-HNAxVz");
+                await emailjs.sendForm("service_ruz7ev8", "template_033ooyg", form, "JyZlcg8R1T-HNAxVz");
                 state = FormState.SUCCESS;
                 form.reset();
             } catch (error) {
