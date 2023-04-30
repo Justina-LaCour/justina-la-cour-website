@@ -3,7 +3,7 @@
     import NewsList from "../../../components/news/NewsList.svelte";
 </script>
 
-<PageStructure title="News" bgImgName="ParisGrandPrix_CloseShot.jpg" bgPositionX="0" bgPositionY="-100px" bgPositionMobileX="60%" bgPositionMobileY="100%" imgName="concerts-extrapic.jpg">
+<PageStructure title="News" bgImgName="ParisGrandPrix_CloseShot.jpg" bgPositionX="0" bgPositionY="-50px" bgPositionMobileX="70%" bgPositionMobileY="100%" imgName="news_extrapic.jpeg">
     <h2>All News</h2>
     <NewsList />
 </PageStructure>

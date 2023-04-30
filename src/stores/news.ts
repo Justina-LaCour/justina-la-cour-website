@@ -78,7 +78,7 @@ export async function updateNews() {
             allNews.push(newsItem);
         });
 
-        allNews.sort((a, b) => a.date.getTime() - b.date.getTime());
+        allNews.sort((a, b) => b.date.getTime() - a.date.getTime());
     
         news.set({
             news: allNews,

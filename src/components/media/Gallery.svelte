@@ -37,7 +37,7 @@
 <style>
 
     .gallery {
-        --thumb-max-size: 25rem;
+        --thumb-max-size: min(25rem, 90vw);
         --cell-width: var(--thumb-max-size);
         --cell-height: var(--thumb-max-size);
     }

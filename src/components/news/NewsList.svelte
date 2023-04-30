@@ -69,7 +69,7 @@
     .overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8));
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.9) 80%);
 
         display: flex;
         flex-direction: column;
@@ -81,7 +81,8 @@
     h4 {
         margin: 0;
         margin-bottom: 0.5rem;
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+        text-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.9);
     }
 
     h5 {

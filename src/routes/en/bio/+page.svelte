@@ -3,6 +3,6 @@
     import { bios } from "../../../stores/bios";
 </script>
 
-<PageStructure title="Biography" bgImgName="bio_bg.JPG" imgName="Portrait2.jpg">
+<PageStructure title="Biography" bgImgName="bio_bg.jpeg" bgPositionY="-75px" bgPositionMobileX="10%" imgName="Portrait2.JPG">
     <p class="line-breaks">{ $bios["en"].biography.full }</p>
 </PageStructure>

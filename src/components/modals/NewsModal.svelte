@@ -27,8 +27,8 @@
 <Modal bind:this={modal}>
     <div slot="left-button"></div>
 
-    <div>
-        <img src={news.imageUrl} alt={news.text[lang].title} />
+    <div class="content">
+        <img src={news.imageUrl} alt={news.text[lang].title} class="main-image" />
         <div class="text">
             <h3>{ news.text[lang].title }</h3>
             <p>{ news.text[lang].content }</p>
@@ -37,13 +37,29 @@
 </Modal>
 
 <style>
+    .content {
+        display: flex;
+        width: 70vw;
+    }
 
+    @media screen and (max-width: 35rem) {
+        .content {
+            display: block;
+            width: 90vw;
+        }
+
+        .main-image {
+            max-height: 50vh;
+            max-width: unset;
+        }
+    }
+    
     img {
         display: block;
         width: 100%;
         object-fit: cover;
-        max-width: min(90vw, 800px);
-        max-height: 400px;
+        object-position: top;
+        max-width: min(90vw, 400px);
     }
 
     .text {
