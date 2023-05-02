@@ -4,7 +4,7 @@
     import Gallery from "../../../components/media/Gallery.svelte";
 </script>
 
-<PageStructure title="Médias" bgPositionY="-250px" bgPositionMobileX="40%" bgPositionMobileY="-300px" layout="content-only">
+<PageStructure title="Médias" bgPositionY="-250px" bgPositionMobileX="40%" bgPositionMobileY="-150px" layout="content-only">
     <section>
         <h2>Videos</h2>
 

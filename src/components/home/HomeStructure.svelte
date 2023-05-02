@@ -93,7 +93,7 @@
 
         background-image: url("/imgs/ParisGrandPrix_WideShot.jpg");
         background-size: cover;
-        background-position: 70%;
+        background-position: 40%;
 
         opacity: 0;
     }
@@ -148,13 +148,6 @@
         font-size: min(3rem, 12vw);
         text-shadow: 0 0 3rem rgba(0, 0, 0, 1), 0 0 1rem rgba(0, 0, 0, 1);
         margin-top: 1rem;
-    }
-    
-    @media screen and (max-width: 55rem) {
-        .splash .text {
-            top: unset;
-            bottom: 2rem;
-        }
     }
 
     .grid {

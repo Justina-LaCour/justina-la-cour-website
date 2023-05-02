@@ -3,7 +3,7 @@
     import ContactForm from "../../../components/contact/ContactForm.svelte";
 </script>
 
-<PageStructure title="Contact" bgPositionY="-250px" bgPositionMobileX="40%" bgPositionMobileY="-300px" imgName="contact-extrapic.jpg">
+<PageStructure title="Contact" bgPositionY="-250px" bgPositionMobileX="40%" bgPositionMobileY="-150px" imgName="contact-extrapic.jpg">
     <h2>Send me a message</h2>
 
     <ContactForm />
