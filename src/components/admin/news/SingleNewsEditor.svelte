@@ -72,6 +72,8 @@
                 getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                     imageUrl = url;
                     imageUploadProgress = -1;
+
+                    computeModified();
                 });
             }
         );
@@ -104,14 +106,15 @@
 
     let modified: boolean = false;
 
-    $: {
+    function computeModified() {
         let h = imageUrl + imageCopyright + dateString;
 
         Object.values(text).forEach((v) => {
             h += v.title + v.content
         });
+        console.log(hash, h, text);
         modified = hash !== h;
-    };
+    }
 </script>
 
 <div class="editor-container" class:modified={modified}>
@@ -131,14 +134,14 @@
     </div>
     
     <label for="{idBase}-copyright" class="copyright-label">Copyright</label>
-    <input type="text" id="{idBase}-copyright" class="copyright-field" bind:value={imageCopyright} />
+    <input type="text" id="{idBase}-copyright" class="copyright-field" bind:value={imageCopyright} on:input={computeModified} />
 
     <label for="{idBase}-date" class="date-label">Date</label>
-    <input type="date" id="{idBase}-date" class="date-field" bind:value={dateString} />
+    <input type="date" id="{idBase}-date" class="date-field" bind:value={dateString} on:input={computeModified} />
 
     <div class="texts">
         {#each Object.keys(text) as lang}
-            <NewsContentEditor langName={lang} text={text[lang]} />
+            <NewsContentEditor langName={lang} text={text[lang]} on:changed={computeModified} />
         {/each}
     </div>
 
