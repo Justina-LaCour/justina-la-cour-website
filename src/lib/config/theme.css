@@ -1,0 +1,64 @@
+@theme {
+    /* Families */
+    --font-body: "Montserrat Variable", sans-serif;
+    --font-heading: "Aboreto", serif;
+
+    /* Site colors */
+    --color-primary-dark: #282444;
+    --color-primary: #5754b7;
+    --color-navigation-background: var(--color-primary-dark);
+    --color-navigation-foreground: var(--color-white);
+    --color-page-canvas: var(--color-primary-dark);
+    --color-background: var(--color-white);
+    --color-surface: var(--color-white);
+    --color-foreground: var(--color-black);
+
+    /* Semantic states */
+    --color-muted: rgb(0 0 0 / 0.68);
+    --color-divider: rgb(0 0 0 / 0.16);
+    --color-control-border: rgb(0 0 0 / 0.25);
+    --color-focus-ring: rgb(87 84 183 / 0.4);
+
+    /* Body */
+    --text-body: 1rem;
+    --text-body--line-height: 1.5;
+
+    /* PageStructure */
+    --text-page-title: 3.75rem;
+    --text-page-title--line-height: 0.95;
+    --text-page-title--letter-spacing: 0;
+    --text-page-title--font-weight: 400;
+
+    --text-page-title-compact: 2.75rem;
+    --text-page-title-compact--line-height: 1.05;
+    --text-page-title-compact--letter-spacing: 0;
+    --text-page-title-compact--font-weight: 400;
+
+    --text-page-title-wide: 5rem;
+    --text-page-title-wide--line-height: 0.95;
+    --text-page-title-wide--letter-spacing: 0;
+    --text-page-title-wide--font-weight: 400;
+
+    --text-page-title-compact-wide: 4rem;
+    --text-page-title-compact-wide--line-height: 1;
+    --text-page-title-compact-wide--letter-spacing: 0;
+    --text-page-title-compact-wide--font-weight: 400;
+
+    --text-page-subtitle: 1.25rem;
+    --text-page-subtitle--line-height: 1.5;
+    --text-page-subtitle--font-weight: 300;
+
+    /* Content hierarchy */
+    --text-section-title: 1.875rem;
+    --text-section-title--line-height: 1.25;
+    --text-section-title--font-weight: 400;
+
+    --text-subsection-title: 1.5rem;
+    --text-subsection-title--line-height: 1.333;
+    --text-subsection-title--font-weight: 400;
+
+    /* Motion */
+    --transition-duration-ui: 200ms;
+    --transition-duration-panel: 300ms;
+    --transition-duration-fancy: 500ms;
+}
