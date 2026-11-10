@@ -1,0 +1,72 @@
+@import 'tailwindcss' source('./');
+@import './lib/config/theme.css';
+@plugin '@tailwindcss/typography';
+
+button, a {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--color-primary-dark);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10001;
+  transform: translateY(calc(-100% - 1rem));
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  transition: transform var(--transition-duration-ui);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+body {
+  background-color: var(--color-page-canvas);
+  color: var(--color-foreground);
+}
+
+.transition-ui {
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: var(--transition-duration-ui);
+}
+
+.transition-panel {
+  transition-property: transform, opacity;
+  transition-duration: var(--transition-duration-panel);
+  transition-timing-function: ease-out;
+}
+
+.transition-overlay {
+  transition-property: opacity;
+  transition-duration: var(--transition-duration-panel);
+}
+
+.transition-scale {
+  transition-property: scale;
+  transition-duration: var(--transition-duration-ui);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+
+  .reduce-motion {
+    transition-property: none !important;
+  }
+
+  .reduce-scale {
+    scale: 1 !important;
+  }
+}

@@ -1,26 +1,46 @@
 {
-	"name": "justina-la-cour-website",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.5.0",
-		"svelte": "^3.54.0",
-		"svelte-check": "^3.0.1",
-		"tslib": "^2.4.1",
-		"typescript": "^4.9.3",
-		"vite": "^4.0.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@emailjs/browser": "^3.10.0",
-		"firebase": "^9.19.1"
-	}
+  "name": "justina-la-cour-website",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Official website of violinist Justina La Cour",
+  "engines": {
+    "node": "26.x"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "@fontsource/aboreto": "^5.3.0",
+    "sanitize-html": "^2.18.1",
+    "valibot": "^1.5.0"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:typecheck": "tsc --noEmit -p tsconfig.tests.json",
+    "validate": "node scripts/validate.mjs",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "test:commands": "node --test tests/commands/*.test.mjs"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-vercel": "^7.0.2",
+    "@sveltejs/enhanced-img": "1.0.0",
+    "@sveltejs/kit": "^3.1.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "26.6.6",
+    "@types/sanitize-html": "^2.16.2",
+    "svelte": "^5.57.3",
+    "svelte-check": "^4.7.8",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  }
 }
