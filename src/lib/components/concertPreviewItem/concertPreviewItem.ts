@@ -22,6 +22,7 @@ export interface ConcertPreviewRenderContext {
 export interface ConcertPreviewItemProps {
     concert: APIConcertPreview;
     linkFormatter: (concert: APIConcertPreview) => string | null;
+    bookingUrlLabel?: string;
     newTab?: boolean;
     class?: string;
     children?: Snippet<[ConcertPreviewRenderContext]>;

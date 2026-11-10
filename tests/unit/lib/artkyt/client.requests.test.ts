@@ -16,7 +16,7 @@ interface RequestCase {
     invoke(client: ArtkytClient): Promise<unknown>;
     response(): Response;
     pathname: string;
-    search: Record<string, string>;
+    search: Record<string, string | null>;
 }
 
 interface ListCase {
@@ -29,6 +29,24 @@ const fromDate = new Date("2026-01-02T03:04:05.000Z");
 const toDate = new Date("2026-12-30T20:15:00.000Z");
 
 const requestCases: RequestCase[] = [
+    {
+        name: "news list without a content length override",
+        invoke: (client) => client.getNewsList({ lang: "en" }),
+        response: () => paginatedResponse("news", []),
+        pathname: "/api/public/profile/profile-id/news",
+        search: { lang: "en", page: "0", pageSize: "10", maxContentLength: null }
+    },
+    {
+        name: "news list with longer previews",
+        invoke: (client) => client.getNewsList({
+            lang: "en",
+            pagination: { page: 1, pageSize: 10 },
+            maxContentLength: 200
+        }),
+        response: () => paginatedResponse("news", []),
+        pathname: "/api/public/profile/profile-id/news",
+        search: { lang: "en", page: "1", pageSize: "10", maxContentLength: "200" }
+    },
     {
         name: "news in HTML format",
         invoke: (client) => client.getNews({ id: "news/id", lang: "fr", format: "html" }),

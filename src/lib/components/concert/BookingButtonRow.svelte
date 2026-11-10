@@ -10,6 +10,7 @@
 
     interface Props {
         performance: PerformanceBookingInfo;
+        urlLabel?: string;
         strongButtonStyle?: StrongButtonStyle;
         strongButtonClass?: string;
         normalButtonClass?: string;
@@ -25,6 +26,7 @@
 
     let {
         performance,
+        urlLabel,
         strongButtonStyle = {},
         strongButtonClass = "border-navigation-background bg-navigation-background text-white hover:bg-background hover:text-navigation-background",
         normalButtonClass = "border-primary-dark bg-background text-primary-dark hover:bg-primary-dark hover:text-white",
@@ -43,7 +45,7 @@
             buttons.push({
                 key: "url",
                 href: url.href,
-                label: i18n.t("concerts.bookOnline")
+                label: urlLabel ?? i18n.t("concerts.bookOnline")
             });
         }
 

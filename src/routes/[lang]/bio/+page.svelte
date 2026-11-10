@@ -14,7 +14,8 @@
     config={{
         bannerImage: bioBanner,
         openGraphImage: bioBanner.openGraphSrc,
-        bannerMobilePosition: "center top"
+        bannerPosition: "6% 50%",
+        bannerMobilePosition: "10% 44%"
     }}
 >
     <Biography contentHtml={data.bioHtml} />

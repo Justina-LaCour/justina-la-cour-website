@@ -2,7 +2,7 @@
     import BookingButtonRow from "$lib/components/concert/BookingButtonRow.svelte";
     import type { ConcertPreviewItemDesignProps } from "../concertPreviewItem";
 
-    let { preview }: ConcertPreviewItemDesignProps = $props();
+    let { preview, bookingUrlLabel }: ConcertPreviewItemDesignProps & { bookingUrlLabel?: string } = $props();
 </script>
 
 <div class="py-4">
@@ -27,6 +27,7 @@
 
     <BookingButtonRow
         performance={preview.performance}
+        urlLabel={bookingUrlLabel}
         strongButtonStyle={{ url: true, email: true }}
         class="mt-5"
         children={preview.link ? moreInformation : undefined}

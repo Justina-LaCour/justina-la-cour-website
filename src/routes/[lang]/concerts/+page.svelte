@@ -76,7 +76,8 @@
     config={{
         bannerImage: concertsBanner,
         openGraphImage: concertsBanner.openGraphSrc,
-        bannerMobilePosition: "center top"
+        bannerPosition: "4% 50%",
+        bannerMobilePosition: "4% 20%"
     }}
 >
     <div class="space-y-16">

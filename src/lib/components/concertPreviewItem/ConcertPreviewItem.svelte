@@ -15,6 +15,7 @@
     let {
         concert,
         linkFormatter,
+        bookingUrlLabel,
         newTab = false,
         class: className = "",
         children
@@ -61,7 +62,7 @@
         {#if children}
             {@render children(renderContext)}
         {:else}
-            <ConcertPreviewItemDefault preview={renderContext} />
+            <ConcertPreviewItemDefault preview={renderContext} {bookingUrlLabel} />
         {/if}
     </article>
 {/if}

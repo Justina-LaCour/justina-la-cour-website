@@ -86,6 +86,10 @@ export interface LocalizedListInput extends LocalizedInput {
     pagination?: Partial<Pagination>;
 }
 
+export interface GetNewsListInput extends LocalizedListInput {
+    maxContentLength?: number;
+}
+
 export interface GetConcertsListInput extends LocalizedListInput {
     filter?: Partial<APIConcertPreviewsListParams>;
 }
@@ -248,15 +252,15 @@ export class ArtkytClient {
     }
 
     public async getNewsList(
-        input: LocalizedListInput,
+        input: GetNewsListInput,
         options: ArtkytRequestOptions = {}
     ): Promise<Result<PaginatedListPage<APINewsItem>, ArtkytError>> {
-        return this.#getList(
-            "news",
-            "news",
-            this.#localizedListQuery(input),
-            options
-        );
+        const query = this.#localizedListQuery(input);
+        if (input.maxContentLength !== undefined) {
+            query.set("maxContentLength", String(input.maxContentLength));
+        }
+
+        return this.#getList("news", "news", query, options);
     }
 
     public async getNews(

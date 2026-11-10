@@ -1,11 +1,9 @@
 import { PUBLIC_ARTKYT_BIO_ID } from "$app/env/public";
 import { artkytClient } from "$lib/artkyt";
-import { isPlayableRecording } from "$lib/artkyt/constants/externalPlatforms";
 import {
     upcomingConcertsFilter,
     type APIConcertPreview,
-    type APINewsItem,
-    type APIRecording
+    type APINewsItem
 } from "$lib/artkyt/types";
 import { ARTKYT_ISR_CACHE } from "$lib/server/artkytCache";
 import { optionalArtkyt } from "$lib/server/artkytResult";
@@ -17,7 +15,6 @@ interface HomeData {
     bioExcerpt: string | null;
     latestNews: APINewsItem[];
     upcomingConcerts: APIConcertPreview[];
-    featuredRecording: APIRecording | null;
 }
 
 export const config = ISR_CONFIG.concerts;
@@ -25,23 +22,20 @@ export const config = ISR_CONFIG.concerts;
 export const load = (async ({ fetch, params }): Promise<HomeData> => {
     const lang = params.lang;
     const options = { fetch, cache: ARTKYT_ISR_CACHE };
-    const [bio, news, concerts, recordings] = await Promise.all([
+    const [bio, news, concerts] = await Promise.all([
         artkytClient.getBio({ id: PUBLIC_ARTKYT_BIO_ID, lang, format: "plain" }, options),
         artkytClient.getNewsList({ lang, pagination: { pageSize: 3 } }, options),
         artkytClient.getConcertsList({
             lang,
             filter: upcomingConcertsFilter(),
             pagination: { pageSize: 5 }
-        }, options),
-        artkytClient.getRecordingsList({ lang, pagination: { pageSize: 30 } }, options)
+        }, options)
     ]);
 
     const bioText = optionalArtkyt(bio, null, "home biography")?.bio.content ?? "";
     return {
         bioExcerpt: textExcerpt(bioText, 360) || null,
         latestNews: optionalArtkyt(news, null, "home news")?.items.slice(0, 3) ?? [],
-        upcomingConcerts: optionalArtkyt(concerts, null, "home concerts")?.items.slice(0, 5) ?? [],
-        featuredRecording: optionalArtkyt(recordings, null, "home recordings")
-            ?.items.slice(0, 30).find(isPlayableRecording) ?? null
+        upcomingConcerts: optionalArtkyt(concerts, null, "home concerts")?.items.slice(0, 5) ?? []
     };
 }) satisfies PageServerLoad;

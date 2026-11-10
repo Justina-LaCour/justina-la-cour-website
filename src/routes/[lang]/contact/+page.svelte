@@ -18,7 +18,7 @@
     config={{
         bannerImage: contactBanner,
         openGraphImage: contactBanner.openGraphSrc,
-        bannerMobilePosition: "center top"
+        bannerMobilePosition: "50% 35%"
     }}
 >
     <div class="contact-page">

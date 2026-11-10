@@ -49,7 +49,7 @@ describe("server HTML language", () => {
             expect(resolve).not.toHaveBeenCalled();
         }
     );
-    it.each(["en", "fr"] as const)(
+    it.each(["en", "fr", "da"] as const)(
         "renders localized routes with lang=%s",
         async (lang) => {
             const response = await renderRoute("/[lang]/bio", lang);

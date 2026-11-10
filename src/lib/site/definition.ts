@@ -54,6 +54,7 @@ export interface SiteDefinition<Locale extends string> {
     locales: {
         supported: readonly Locale[];
         default: Locale;
+        openGraph: Readonly<Record<Locale, string>>;
     };
     navigation: readonly SiteNavigationItem[];
     contact: {

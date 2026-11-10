@@ -8,9 +8,10 @@
     interface Props {
         platform: RecordingPlatformCode;
         url: string;
+        iframeClass?: string;
     }
 
-    let { platform, url }: Props = $props();
+    let { platform, url, iframeClass }: Props = $props();
     const i18n = useI18n();
 
     let embedPlayerUrl = $derived(getEmbedPlayerUrl(platform, url));
@@ -34,6 +35,7 @@
             </a>
         {:else}
             <iframe
+                class={iframeClass}
                 src={embedPlayerUrl.href}
                 title={i18n.t("recordings.previewTitle")}
                 width="100%"

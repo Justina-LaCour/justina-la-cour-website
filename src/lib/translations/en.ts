@@ -19,6 +19,7 @@ export default {
     },
     og: {
         homeDescription: "Official website of violinist {siteName}. Biography, concerts and contact.",
+        homeImageAlt: "{siteName} plays violin in a red gown beside a grand piano.",
         bioDescription: "Discover the biography of violinist {siteName}.",
         newsDescription: "News from {siteName}",
         concertsDescription: "Upcoming concerts and past performances by violinist {siteName}.",
@@ -46,7 +47,8 @@ export default {
         seeNews: "See all news",
         seeConcerts: "See all concerts",
         seeMedia: "Explore media",
-        upcomingConcerts: "Upcoming concerts"
+        upcomingConcerts: "Upcoming concerts",
+        concertInfoAndTickets: "Info & tickets"
     },
     contact: {
         title: "Contact",

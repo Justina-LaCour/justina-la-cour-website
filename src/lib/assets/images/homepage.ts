@@ -1,7 +1,7 @@
 import type { LazyImageAsset } from "$lib/components/images/LazyImage.svelte";
 
 import homepageDesktopPicture from "./homepage.jpg?w=768;1280;1920;2560;3200;3600&quality=90&enhanced";
-import homepageOpenGraphImage from "./homepage.jpg?w=1200&h=630&fit=cover&position=center&format=jpg&quality=90";
+import homepageOpenGraphImage from "./homepage-share.jpg";
 import homepageDesktopPlaceholder from "./homepage.jpg?w=48&format=webp&quality=35&inline";
 import homepageMobilePicture from "./homepage.jpg?w=640;960;1280;1600&aspect=2:3&position=center&quality=90&enhanced";
 import homepageMobilePlaceholder from "./homepage.jpg?w=48&aspect=2:3&position=center&format=webp&quality=35&inline";

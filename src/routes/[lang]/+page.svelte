@@ -1,7 +1,6 @@
 <script lang="ts">
     import { resolve } from "$app/paths";
     import RecordingPlayer from "$lib/artkyt/components/RecordingPlayer.svelte";
-    import { isPlayableRecording } from "$lib/artkyt/constants/externalPlatforms";
     import { homepageHero, homepageOpenGraphImageUrl } from "$lib/assets/images/homepage";
     import { mediaBanner } from "$lib/assets/images/media";
     import ConcertPreviewItem from "$lib/components/concertPreviewItem/ConcertPreviewItem.svelte";
@@ -17,13 +16,13 @@
     let { data }: { data: PageData } = $props();
     const i18n = useI18n();
     let params = $derived({ lang: data.lang });
-    let recording = $derived(data.featuredRecording);
 </script>
 
 <OpenGraph
     title={site.identity.name}
     description={i18n.t("og.homeDescription")}
     imageUrl={homepageOpenGraphImageUrl}
+    imageAlt={i18n.t("og.homeImageAlt")}
 />
 
 <main id="main-content" tabindex="-1">
@@ -41,12 +40,13 @@
                         {i18n.t("home.seeBio")}
                     </a>
                 </section>
-                {#if recording && isPlayableRecording(recording)}
-                    <section aria-label={i18n.t("home.featuredRecording")}>
-                        <RecordingPlayer platform={recording.platform} url={recording.url} />
-                        <p class="mt-3 text-sm text-muted">{recording.title}</p>
-                    </section>
-                {/if}
+                <section aria-label={i18n.t("home.featuredRecording")}>
+                    <RecordingPlayer
+                        platform="youtube"
+                        url="https://youtu.be/znK4PkjvpQc"
+                        iframeClass="block aspect-video h-auto"
+                    />
+                </section>
             </div>
 
             <section class="border-t border-divider pt-8">
@@ -74,7 +74,11 @@
                 {#if data.upcomingConcerts.length}
                     <div class="mb-5 grid gap-4">
                         {#each data.upcomingConcerts as concert}
-                            <ConcertPreviewItem {concert} linkFormatter={(concert) => concert.url || null} />
+                            <ConcertPreviewItem
+                                {concert}
+                                linkFormatter={(concert) => concert.url || null}
+                                bookingUrlLabel={i18n.t("home.concertInfoAndTickets")}
+                            />
                         {/each}
                     </div>
                 {:else}
@@ -83,22 +87,6 @@
                 <a class="section-link" href={resolve("/[lang]/concerts", params)}>
                     {i18n.t("home.seeConcerts")}
                 </a>
-            </section>
-
-            <section class="grid items-center gap-6 border-t border-divider pt-8 md:grid-cols-2">
-                <LazyImage
-                    src={mediaBanner.src}
-                    lowresSrc={mediaBanner.lowresSrc}
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    alt=""
-                    class="aspect-3/2 w-full rounded-lg object-cover"
-                />
-                <div>
-                    <h2>{i18n.t("gallery.title")}</h2>
-                    <a class="section-link" href={resolve("/[lang]/media", params)}>
-                        {i18n.t("home.seeMedia")}
-                    </a>
-                </div>
             </section>
         </div>
     </div>

@@ -12,8 +12,3 @@ declare module "*format=jpg&quality=80" {
     const value: string;
     export default value;
 }
-
-declare module "*format=jpg&quality=90" {
-    const value: string;
-    export default value;
-}

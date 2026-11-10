@@ -13,7 +13,7 @@ import type {
     SiteDefinition
 } from "$lib/site/definition";
 
-const supportedLanguages = ["en", "fr"] as const;
+const supportedLanguages = ["en", "fr", "da"] as const;
 const artistName = "Justina La Cour";
 const contactEmail = PUBLIC_CONTACT_EMAIL.trim();
 const navigationWordmark = undefined as NavigationWordmark | undefined;
@@ -29,7 +29,8 @@ export const site = {
     },
     locales: {
         supported: supportedLanguages,
-        default: "en"
+        default: "en",
+        openGraph: { en: "en_GB", fr: "fr_FR", da: "da_DK" }
     },
     navigation: [
         { route: "/[lang]", nameKey: "nav.home" },

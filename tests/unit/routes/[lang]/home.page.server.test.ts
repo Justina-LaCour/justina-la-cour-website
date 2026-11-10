@@ -5,8 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 const client = vi.hoisted(() => ({
     getBio: vi.fn(),
     getNewsList: vi.fn(),
-    getConcertsList: vi.fn(),
-    getRecordingsList: vi.fn()
+    getConcertsList: vi.fn()
 }));
 vi.mock("$lib/artkyt", () => ({ artkytClient: client }));
 
@@ -14,7 +13,6 @@ import { load } from "$src/routes/[lang]/+page.server";
 
 const success = <T>(value: T) => ({ success: true, value });
 const items = (count: number) => Array.from({ length: count }, (_, id) => ({ id }));
-const featured = { platform: "youtube", url: "https://www.youtube.com/watch?v=1V7yLJOhuV8" };
 const fetch = vi.fn();
 
 describe("homepage previews", () => {
@@ -23,16 +21,13 @@ describe("homepage previews", () => {
         client.getBio.mockResolvedValue(success({ bio: { content: "  About\n Justina  " } }));
         client.getNewsList.mockResolvedValue(success({ items: items(6) }));
         client.getConcertsList.mockResolvedValue(success({ items: items(8) }));
-        client.getRecordingsList.mockResolvedValue(success({
-            items: [{ platform: "unknown", url: "https://example.com" }, featured]
-        }));
     });
 
     it.each(["en", "fr"])("requests bounded, fresh Artkyt previews in %s", async (lang) => {
         const data = await load({ fetch, params: { lang } } as never);
         expect(data).toEqual({
             bioExcerpt: "About Justina", latestNews: items(3),
-            upcomingConcerts: items(5), featuredRecording: featured
+            upcomingConcerts: items(5)
         });
 
         const options = { fetch, cache: ARTKYT_ISR_CACHE };
@@ -43,16 +38,14 @@ describe("homepage previews", () => {
             lang, filter: expect.objectContaining({ sort: "startDateAsc", fromDate: expect.any(Date) }),
             pagination: { pageSize: 5 }
         }, options);
-        expect(client.getRecordingsList).toHaveBeenCalledWith({ lang, pagination: { pageSize: 30 } }, options);
     });
 
     it("retains healthy previews when another resource fails", async () => {
         client.getBio.mockResolvedValue({ success: false, error: { code: "network" } });
-        client.getRecordingsList.mockResolvedValue(success({ items: [...items(30), featured] }));
         const log = vi.spyOn(console, "error").mockImplementation(() => {});
         try {
             await expect(load({ fetch, params: { lang: "en" } } as never)).resolves.toEqual({
-                bioExcerpt: null, latestNews: items(3), upcomingConcerts: items(5), featuredRecording: null
+                bioExcerpt: null, latestNews: items(3), upcomingConcerts: items(5)
             });
         } finally {
             log.mockRestore();

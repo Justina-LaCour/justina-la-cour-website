@@ -21,14 +21,14 @@ vi.mock("$lib/config/config", () => ({
             canonicalUrl: "https://artist.example"
         },
         locales: {
-            supported: ["fr", "en", "de"],
-            default: "fr"
+            supported: ["fr", "en", "da"],
+            default: "fr",
+            openGraph: { fr: "fr_FR", en: "en_GB", da: "da_DK" }
         }
     }
 }));
 
 import OpenGraph from "$lib/components/utils/OpenGraph.svelte";
-import { normalizeOpenGraphLocale } from "$lib/components/utils/openGraph";
 
 describe("OpenGraph metadata", () => {
     beforeEach(() => {
@@ -40,7 +40,8 @@ describe("OpenGraph metadata", () => {
             props: {
                 title: "Biography",
                 description: "   ",
-                imageUrl: "   "
+                imageUrl: "   ",
+                imageAlt: "A violinist on stage"
             }
         });
 
@@ -55,11 +56,13 @@ describe("OpenGraph metadata", () => {
             "og:image:secure_url",
             "og:image:type",
             "og:image:width",
-            "og:image:height"
+            "og:image:height",
+            "og:image:alt"
         ]) {
             expect(head).not.toContain(`property="${property}"`);
         }
         expect(head).not.toContain('name="twitter:image"');
+        expect(head).not.toContain('name="twitter:image:alt"');
     });
 
     it("emits complete image and large-card metadata when an image exists", () => {
@@ -68,6 +71,7 @@ describe("OpenGraph metadata", () => {
                 title: "Biography",
                 description: "Artist biography",
                 imageUrl: "/images/share.webp",
+                imageAlt: "A violinist on stage",
                 imageWidth: 1600,
                 imageHeight: 900,
                 imageType: "image/webp"
@@ -93,30 +97,29 @@ describe("OpenGraph metadata", () => {
         expect(head).toContain('property="og:image:type" content="image/webp"');
         expect(head).toContain('property="og:image:width" content="1600"');
         expect(head).toContain('property="og:image:height" content="900"');
+        expect(head).toContain('property="og:image:alt" content="A violinist on stage"');
         expect(head).toContain(
             'name="twitter:image" content="https://preview.example/images/share.webp"'
         );
+        expect(head).toContain('name="twitter:image:alt" content="A violinist on stage"');
     });
 
     it("emits the current Open Graph locale and excludes it from alternates", () => {
+        mockPage.params.lang = "da";
         const { head } = render(OpenGraph, {
-            props: { title: "Biography" }
+            props: { title: "Biografi" }
         });
 
-        expect(head).toContain('property="og:locale" content="fr"');
+        expect(head).toContain('property="og:locale" content="da_DK"');
         expect(head).toContain(
-            'property="og:locale:alternate" content="en"'
+            'property="og:locale:alternate" content="en_GB"'
         );
         expect(head).toContain(
-            'property="og:locale:alternate" content="de"'
+            'property="og:locale:alternate" content="fr_FR"'
         );
         expect(head).not.toContain(
-            'property="og:locale:alternate" content="fr"'
+            'property="og:locale:alternate" content="da_DK"'
         );
-    });
-
-    it("normalizes regional locale separators without guessing a region", () => {
-        expect(normalizeOpenGraphLocale("fr-CH")).toBe("fr_CH");
-        expect(normalizeOpenGraphLocale("fr")).toBe("fr");
+        expect(head).toContain('hreflang="da" href="https://artist.example/da/bio"');
     });
 });

@@ -3,7 +3,6 @@
     import "@fontsource-variable/montserrat/wght-italic.css";
     import "@fontsource/aboreto";
     import "../app.css";
-    const favicon = "/favicon.png";
     import { beforeNavigate, onNavigate } from "$app/navigation";
     import LoadingSpinner from "$lib/components/utils/LoadingSpinner.svelte";
     import { onMount } from "svelte";
@@ -71,7 +70,7 @@
 </script>
 
 <svelte:head>
-    <link rel="icon" href={favicon} />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96" />
 </svelte:head>
 {@render children?.()}
 {#if showLoading}

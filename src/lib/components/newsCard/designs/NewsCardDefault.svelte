@@ -5,20 +5,19 @@
     let { preview }: NewsCardDesignProps = $props();
 </script>
 
-<a class="grid h-full sm:grid-cols-[minmax(12rem,0.7fr)_1fr]" href={preview.href}>
-    <NewsCardImage
-        {preview}
-        class="aspect-4/3 h-full w-full bg-primary-dark/10 object-cover sm:aspect-auto"
-    />
+<a class="grid h-full sm:min-h-80 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]" href={preview.href}>
+    <div class="grid aspect-4/3 overflow-hidden bg-primary-dark/10 sm:aspect-auto sm:contain-size">
+        <NewsCardImage {preview} class="h-full w-full object-cover" />
+    </div>
 
-    <div class="flex flex-col p-6">
+    <div class="flex flex-col p-6 wrap-anywhere">
         {#if preview.publishedAt}
             <time class="mb-3 text-sm text-muted" datetime={preview.news.publishedAt}>
                 {preview.publishedAt}
             </time>
         {/if}
-        <h2 class="text-section-title text-primary-dark">{preview.news.title}</h2>
-        {#if preview.news.content}
+        <h2 class="text-subsection-title text-primary-dark">{preview.news.title}</h2>
+        {#if preview.excerpt}
             <p class="mt-3 text-black/75">{preview.excerpt}</p>
         {/if}
         <span class="transition-ui reduce-motion mt-auto pt-6 font-semibold text-primary group-hover:underline">

@@ -7,6 +7,7 @@ export type {
     GetArtistsListInput,
     GetConcertsListInput,
     GetGalleriesListInput,
+    GetNewsListInput,
     GetProfileLinksInput,
     GetRepertoireListInput,
     LocalizedInput,

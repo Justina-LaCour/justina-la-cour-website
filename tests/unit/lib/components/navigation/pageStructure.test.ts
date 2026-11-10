@@ -23,7 +23,8 @@ vi.mock("$lib/config/config", () => ({
         },
         locales: {
             supported: ["fr", "en", "de"],
-            default: "fr"
+            default: "fr",
+            openGraph: { fr: "fr_FR", en: "en_GB", de: "de_DE" }
         }
     }
 }));

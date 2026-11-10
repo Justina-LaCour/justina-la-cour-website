@@ -33,10 +33,8 @@ export const revalidationMap = new RevalidationMap<ArtkytResourceType>({
             ...localizeAndResolve("/[lang]", {}),
             ...localizeAndResolve("/[lang]/concerts", {})
         ],
-        recordings: (_selection, { localizeAndResolve }) => [
-            ...localizeAndResolve("/[lang]", {}),
-            ...localizeAndResolve("/[lang]/media", {})
-        ],
+        recordings: (_selection, { localizeAndResolve }) =>
+            localizeAndResolve("/[lang]/media", {}),
         galleries: (selection, { localizeAndResolve }) =>
             includesResource(selection, PUBLIC_ARTKYT_GALLERY_ID)
                 ? localizeAndResolve("/[lang]/media", {})

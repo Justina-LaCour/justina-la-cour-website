@@ -19,6 +19,7 @@ export default {
     },
     og: {
         homeDescription: "Site officiel de la violoniste {siteName}. Biographie, concerts et contact.",
+        homeImageAlt: "{siteName} joue du violon en robe rouge à côté d’un piano à queue.",
         bioDescription: "Découvrez la biographie de la violoniste {siteName}.",
         newsDescription: "Actualités de {siteName}",
         concertsDescription: "Les prochains concerts et les concerts passés de la violoniste {siteName}.",
@@ -46,7 +47,8 @@ export default {
         seeNews: "Voir toutes les actualités",
         seeConcerts: "Voir tous les concerts",
         seeMedia: "Découvrir les médias",
-        upcomingConcerts: "Prochains concerts"
+        upcomingConcerts: "Prochains concerts",
+        concertInfoAndTickets: "Infos et billetterie"
     },
     contact: {
         title: "Contact",
